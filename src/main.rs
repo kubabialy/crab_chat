@@ -5,6 +5,10 @@ use druid::{AppLauncher, Data, Lens, UnitPoint, WidgetExt, WindowDesc};
 const VERTICAL_WIDGET_SPACING: f64 = 20.0;
 const BUTTON_BOX_WIDTH: f64 = 100.0;
 const TEXT_BOX_WIDTH: f64 = 200.0;
+const WINDOW_WIDTH: f64 = 800.0;
+const WINDOW_HEIGHT: f64 = 600.0;
+
+struct WindowSize (f64, f64);
 
 #[derive(Clone, Data, Lens)]
 struct AuthState {
@@ -13,10 +17,13 @@ struct AuthState {
 }
 
 pub fn main() {
+    // initialize window size
+    let window_size = WindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+
     // describe the main window
     let main_window = WindowDesc::new(build_root_widget)
         .title("Crab Chat 🦀")
-        .window_size((800.0, 600.0));
+        .window_size(window_size);
 
     // create the initial app state
     let initial_state: AuthState = AuthState {
